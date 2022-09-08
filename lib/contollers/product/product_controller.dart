@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 class ProductController extends GetxController {
   late final Dio _dio;
-  String? name;
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
