@@ -13,6 +13,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal,
       appBar: AppBar(
         title: Text(_controller.productList[index].name),
       ),
@@ -26,8 +27,11 @@ class DetailsPage extends StatelessWidget {
                 tag: index,
                 child: Center(
                   child: _controller.isLoading.value
-                      ? Image.network(
-                          _controller.productList[index].image.toString(),
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(Get.width * 0.05),
+                          child: Image.network(
+                            _controller.productList[index].image.toString(),
+                          ),
                         )
                       : const CircularProgressIndicator(),
                 ),
