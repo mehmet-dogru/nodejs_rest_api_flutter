@@ -70,6 +70,8 @@ class AddProductPage extends StatelessWidget {
                           _controller.postProduct(model);
                           _controller.fetchProduct();
                           Navigator.pop(context);
+                        } else {
+                          Get.snackbar("HATA", "Boş Alanları Doldurunuz");
                         }
                       }
                     : null,
