@@ -15,6 +15,8 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text(_controller.productList[index].name),
       ),
       body: Center(

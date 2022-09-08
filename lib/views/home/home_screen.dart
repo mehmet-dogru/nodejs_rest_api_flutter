@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nodejs_restapi/contollers/product/product_controller.dart';
 import 'package:flutter_nodejs_restapi/helpers/textstyle_helper.dart';
+import 'package:flutter_nodejs_restapi/views/details/add_product_screen.dart';
 import 'package:flutter_nodejs_restapi/views/details/details_screen.dart';
 import 'package:get/get.dart';
 
@@ -13,19 +14,36 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Products'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Ürünler',
+          style: TextStyle(color: Colors.black, fontSize: Get.width * 0.06),
+        ),
       ),
       body: Obx(
         () => _controller.isLoading.value
             ? ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: _controller.productList.length,
                 itemBuilder: (context, index) {
                   return _productCard(index, context);
                 },
               )
-            : const Center(child: CircularProgressIndicator()),
+            : const Center(child: CircularProgressIndicator.adaptive()),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add_circle_rounded,
+          size: Get.width * 0.1,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddProductPage()),
+          );
+        },
       ),
     );
   }

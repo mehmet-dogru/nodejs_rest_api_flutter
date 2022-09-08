@@ -6,7 +6,7 @@ String productModelToJson(ProductModel data) => json.encode(data.toJson());
 
 class ProductModel {
   ProductModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.price,
     required this.description,
@@ -15,7 +15,7 @@ class ProductModel {
     this.updatedAt,
   });
 
-  String id;
+  String? id;
   String name;
   int price;
   String description;
