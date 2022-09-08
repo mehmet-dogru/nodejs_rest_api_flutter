@@ -28,14 +28,14 @@ class DetailsPage extends StatelessWidget {
               Hero(
                 tag: index,
                 child: Center(
-                  child: _controller.isLoading.value
-                      ? ClipRRect(
+                  child: _controller.productList[index].image == null
+                      ? const Placeholder()
+                      : ClipRRect(
                           borderRadius: BorderRadius.circular(Get.width * 0.05),
                           child: Image.network(
                             _controller.productList[index].image.toString(),
                           ),
-                        )
-                      : const CircularProgressIndicator(),
+                        ),
                 ),
               ),
               Container(

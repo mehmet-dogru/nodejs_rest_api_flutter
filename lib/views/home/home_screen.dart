@@ -14,6 +14,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              _controller.fetchProduct();
+            },
+            icon: Icon(
+              Icons.refresh_rounded,
+              size: Get.width * 0.08,
+              color: Colors.black,
+            ),
+          ),
+        ],
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
