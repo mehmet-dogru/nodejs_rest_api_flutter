@@ -46,10 +46,14 @@ class ProductController extends GetxController {
       'price': productModel.price,
       'name': productModel.name,
       'description': productModel.description,
+      //'image': productModel.image,
     };
 
     await _dio.post("http://10.0.2.2:3000/products", data: _data);
 
     changeLoading();
   }
+
+
+ 
 }
