@@ -88,9 +88,9 @@ class HomePage extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(Get.width * 0.05),
                         child: Image.network(
-                          _controller.productList[index].image!,
+                          "http://10.0.2.2:3000/upload/" + _controller.productList[index].image!,
                           fit: BoxFit.cover,
-                          scale: 4,
+                          scale: 2,
                         ),
                       ),
                     ),

@@ -89,14 +89,12 @@ class AddProductPage extends StatelessWidget {
                                   price: int.parse(_controller.priceController.text),
                                   description: _controller.descriptionController.text,
                                 );
-
+                                _controller.postProduct(model);
+                                Navigator.pop(context);
+                                _controller.fetchProduct();
                                 _controller.priceController.clear();
                                 _controller.descriptionController.clear();
                                 _controller.productNameController.clear();
-                                _controller.postProduct(model);
-                                _controller.fetchProduct();
-                                imageController.uploadImage();
-                                Navigator.pop(context);
                               } else {
                                 Get.snackbar("HATA", "Boş Alanları Doldurunuz");
                               }

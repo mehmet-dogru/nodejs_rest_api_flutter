@@ -1,15 +1,18 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as d;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_nodejs_restapi/contollers/product/product_image_controller.dart';
 import 'package:flutter_nodejs_restapi/models/product/product_model.dart';
 import 'package:get/get.dart';
 
 class ProductController extends GetxController {
-  late final Dio _dio;
+  late final d.Dio _dio;
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
+
+  final ProductImageController _imageController = Get.put(ProductImageController());
 
   var productList = <ProductModel>[].obs;
 
@@ -18,7 +21,7 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _dio = Dio();
+    _dio = d.Dio();
     fetchProduct();
   }
 
@@ -42,18 +45,15 @@ class ProductController extends GetxController {
 
   Future<void> postProduct(ProductModel productModel) async {
     changeLoading();
-    var _data = {
+    var formData = d.FormData.fromMap({
+      'image': await d.MultipartFile.fromFile(_imageController.pickedFile!.path),
       'price': productModel.price,
       'name': productModel.name,
       'description': productModel.description,
-      //'image': productModel.image,
-    };
+    });
 
-    await _dio.post("http://10.0.2.2:3000/products", data: _data);
+    await _dio.post("http://10.0.2.2:3000/products", data: formData);
 
     changeLoading();
   }
-
-
- 
 }
