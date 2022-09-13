@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nodejs_restapi/views/home/home_screen.dart';
+import 'views/home/home_screen.dart';
 import 'package:get/get.dart';
 
 void main() {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nodejs_restapi/contollers/product/product_controller.dart';
-import 'package:flutter_nodejs_restapi/helpers/textstyle_helper.dart';
-import 'package:flutter_nodejs_restapi/views/details/add_product_screen.dart';
-import 'package:flutter_nodejs_restapi/views/details/details_screen.dart';
+import '../../contollers/product/product_controller.dart';
+import '../../helpers/textstyle_helper.dart';
+import '../details/add_product_screen.dart';
+import '../details/details_screen.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {

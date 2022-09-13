@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart' as d;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_nodejs_restapi/contollers/product/product_image_controller.dart';
+import 'product_image_controller.dart';
 import 'package:flutter_nodejs_restapi/models/product/product_model.dart';
 import 'package:get/get.dart';
 
