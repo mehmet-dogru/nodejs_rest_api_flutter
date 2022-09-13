@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart' as d;
@@ -55,5 +56,11 @@ class ProductController extends GetxController {
     await _dio.post("http://10.0.2.2:3000/products", data: formData);
 
     changeLoading();
+  }
+
+  Future<void> deleteProduct(ProductModel productModel) async {
+    var result = await _dio.delete("http://10.0.2.2:3000/products/${productModel.id}");
+
+    log(result.toString());
   }
 }

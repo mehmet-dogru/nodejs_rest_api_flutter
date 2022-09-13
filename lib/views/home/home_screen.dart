@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                         child: Image.network(
                           "http://10.0.2.2:3000/upload/" + _controller.productList[index].image!,
                           fit: BoxFit.cover,
-                          scale: 2,
+                          width: 800,
                         ),
                       ),
                     ),

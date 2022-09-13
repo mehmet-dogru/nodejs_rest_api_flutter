@@ -34,6 +34,7 @@ class DetailsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(Get.width * 0.05),
                           child: Image.network(
                             "http://10.0.2.2:3000/upload/" + _controller.productList[index].image.toString(),
+                            width: 800,
                           ),
                         ),
                 ),
@@ -58,6 +59,18 @@ class DetailsPage extends StatelessWidget {
                   ],
                 ),
               ),
+              FloatingActionButton(
+                backgroundColor: Colors.red,
+                onPressed: () {
+                  _controller.deleteProduct(_controller.productList[index]);
+                  _controller.fetchProduct();
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.delete_rounded,
+                  size: Get.width * 0.08,
+                ),
+              )
             ],
           ),
         ),
