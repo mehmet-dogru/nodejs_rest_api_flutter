@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nodejs_restapi/contollers/product/product_controller.dart';
 import 'package:flutter_nodejs_restapi/helpers/textstyle_helper.dart';
+import 'package:flutter_nodejs_restapi/views/details/update_product_screen.dart';
 import 'package:get/get.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -59,18 +60,39 @@ class DetailsPage extends StatelessWidget {
                   ],
                 ),
               ),
-              FloatingActionButton(
-                backgroundColor: Colors.red,
-                onPressed: () {
-                  _controller.deleteProduct(_controller.productList[index]);
-                  _controller.fetchProduct();
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.delete_rounded,
-                  size: Get.width * 0.08,
-                ),
-              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FloatingActionButton(
+                    heroTag: 'deleteBtn',
+                    backgroundColor: Colors.red,
+                    onPressed: () {
+                      _controller.deleteProduct(_controller.productList[index]);
+                      _controller.fetchProduct();
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.delete_rounded,
+                      size: Get.width * 0.08,
+                    ),
+                  ),
+                  FloatingActionButton(
+                    heroTag: 'updateBtn',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdateProductPage(model: _controller.productList[index]),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.edit_note_rounded,
+                      size: Get.width * 0.08,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

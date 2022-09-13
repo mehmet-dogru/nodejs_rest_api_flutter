@@ -63,4 +63,14 @@ class ProductController extends GetxController {
 
     log(result.toString());
   }
+
+  Future<void> updateProduct(ProductModel productModel) async {
+    var formData = d.FormData.fromMap({
+      'image': await d.MultipartFile.fromFile(_imageController.pickedFile!.path),
+      'price': productModel.price,
+      'name': productModel.name,
+      'description': productModel.description,
+    });
+    await _dio.patch('http://10.0.2.2:3000/products/${productModel.id}', data: formData);
+  }
 }
