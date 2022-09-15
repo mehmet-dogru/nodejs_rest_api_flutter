@@ -12,6 +12,8 @@ class DetailsPage extends StatelessWidget {
 
   final ProductController _controller = Get.put(ProductController());
 
+  final String defaultImagePath = "http://10.0.2.2:3000/upload/";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +37,7 @@ class DetailsPage extends StatelessWidget {
                       : ClipRRect(
                           borderRadius: BorderRadius.circular(Get.width * 0.05),
                           child: Image.network(
-                            "http://10.0.2.2:3000/upload/" + _controller.productList[index].image.toString(),
+                            defaultImagePath + _controller.productList[index].image.toString(),
                             width: 800,
                           ),
                         ),

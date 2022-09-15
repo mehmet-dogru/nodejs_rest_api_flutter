@@ -79,9 +79,6 @@ class AddProductPage extends StatelessWidget {
                     ),
                     SizedBox(height: Get.width * 0.05),
                     InkWell(
-                      onLongPress: () {
-                        
-                      },
                       onTap: _controller.isLoading.value
                           ? () {
                               if (_controller.priceController.text.isNotEmpty &&

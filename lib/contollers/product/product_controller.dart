@@ -19,6 +19,8 @@ class ProductController extends GetxController {
 
   var isLoading = true.obs;
 
+  final String baseUrl = "http://10.0.2.2:3000/products";
+
   @override
   void onInit() {
     super.onInit();
@@ -32,7 +34,7 @@ class ProductController extends GetxController {
 
   Future<void> fetchProduct() async {
     changeLoading();
-    final response = await _dio.get("http://10.0.2.2:3000/products");
+    final response = await _dio.get(baseUrl);
 
     if (response.statusCode == HttpStatus.ok) {
       final _datas = response.data;
@@ -53,13 +55,13 @@ class ProductController extends GetxController {
       'description': productModel.description,
     });
 
-    await _dio.post("http://10.0.2.2:3000/products", data: formData);
+    await _dio.post(baseUrl, data: formData);
 
     changeLoading();
   }
 
   Future<void> deleteProduct(ProductModel productModel) async {
-    var result = await _dio.delete("http://10.0.2.2:3000/products/${productModel.id}");
+    var result = await _dio.delete("$baseUrl/${productModel.id}");
 
     log(result.toString());
   }
@@ -71,6 +73,6 @@ class ProductController extends GetxController {
       'name': productModel.name,
       'description': productModel.description,
     });
-    await _dio.patch('http://10.0.2.2:3000/products/${productModel.id}', data: formData);
+    await _dio.patch('$baseUrl/${productModel.id}', data: formData);
   }
 }
