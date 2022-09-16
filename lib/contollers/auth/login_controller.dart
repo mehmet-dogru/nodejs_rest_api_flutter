@@ -37,8 +37,12 @@ class LoginController extends GetxController {
 
     print(result.data);
 
-    if (result.data['token'] != null) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+    if (result.data['success'] == true) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+    }
+
+    if (result.data['success'] == false) {
+      Get.snackbar('Hata', result.data['message']);
     }
 
     changeLoading();
