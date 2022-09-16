@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_nodejs_restapi/contollers/product/product_controller.dart';
-import 'package:flutter_nodejs_restapi/contollers/product/product_image_controller.dart';
-import 'package:flutter_nodejs_restapi/helpers/textstyle_helper.dart';
-import 'package:flutter_nodejs_restapi/models/product/product_model.dart';
 import 'package:get/get.dart';
+
+import '../../contollers/product/product_controller.dart';
+import '../../contollers/product/product_image_controller.dart';
+import '../../helpers/textstyle_helper.dart';
+import '../../models/product/product_model.dart';
 
 class AddProductPage extends StatelessWidget {
   AddProductPage({Key? key}) : super(key: key);
