@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../contollers/auth/register_controller.dart';
-import '../../models/auth/user_model.dart';
+import '../../models/auth/login_model.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);

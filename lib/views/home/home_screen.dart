@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_nodejs_restapi/views/auth/login_screen.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../contollers/product/product_controller.dart';
 import '../../helpers/textstyle_helper.dart';
@@ -9,6 +13,7 @@ import '../details/details_screen.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
+  final box = GetStorage();
   final ProductController _controller = Get.put(ProductController());
 
   @override
@@ -24,6 +29,23 @@ class HomePage extends StatelessWidget {
               Icons.refresh_rounded,
               size: Get.width * 0.08,
               color: Colors.black,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              box.remove('token').then((value) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
+              });
+            },
+            icon: Icon(
+              Icons.logout_rounded,
+              size: Get.width * 0.08,
+              color: Colors.red,
             ),
           ),
         ],

@@ -1,13 +1,18 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_nodejs_restapi/views/home/home_screen.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-import '../../models/auth/user_model.dart';
+import '../../models/auth/login_model.dart';
+import '../../views/home/home_screen.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final box = GetStorage();
 
   var isLoading = true.obs;
   var validateMsg = ''.obs;
@@ -36,7 +41,14 @@ class LoginController extends GetxController {
     print(result.data);
 
     if (result.data['success'] == true) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      box.write('token', result.data['token']);
+      log("Kaydedilen token ==>" + box.read('token'));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
     }
 
     if (result.data['success'] == false) {

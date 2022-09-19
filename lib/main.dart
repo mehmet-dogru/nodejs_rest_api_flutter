@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'views/auth/login_screen.dart';
+import 'package:flutter_nodejs_restapi/views/auth/splash_screen.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: const SplashScreen(),
     );
   }
 }

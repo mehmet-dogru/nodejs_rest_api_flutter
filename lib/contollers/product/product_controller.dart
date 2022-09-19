@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart' as d;
 import 'package:flutter/cupertino.dart';
-import 'product_image_controller.dart';
-import 'package:flutter_nodejs_restapi/models/product/product_model.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../../models/product/product_model.dart';
+import 'product_image_controller.dart';
 
 class ProductController extends GetxController {
   late final d.Dio _dio;
@@ -21,6 +23,8 @@ class ProductController extends GetxController {
 
   final String baseUrl = "http://10.0.2.2:3000/products";
 
+  final box = GetStorage();
+
   @override
   void onInit() {
     super.onInit();
@@ -34,7 +38,9 @@ class ProductController extends GetxController {
 
   Future<void> fetchProduct() async {
     changeLoading();
-    final response = await _dio.get(baseUrl);
+
+    String token = await box.read('token');
+    final response = await _dio.get(baseUrl, options: d.Options(headers: {"Authorization": "Bearer $token"}));
 
     if (response.statusCode == HttpStatus.ok) {
       final _datas = response.data;
@@ -48,6 +54,7 @@ class ProductController extends GetxController {
 
   Future<void> postProduct(ProductModel productModel) async {
     changeLoading();
+    String token = await box.read('token');
     var formData = d.FormData.fromMap({
       'image': await d.MultipartFile.fromFile(_imageController.pickedFile!.path),
       'price': productModel.price,
@@ -55,24 +62,26 @@ class ProductController extends GetxController {
       'description': productModel.description,
     });
 
-    await _dio.post(baseUrl, data: formData);
+    await _dio.post(baseUrl, data: formData, options: d.Options(headers: {"Authorization": "Bearer $token"}));
 
     changeLoading();
   }
 
   Future<void> deleteProduct(ProductModel productModel) async {
-    var result = await _dio.delete("$baseUrl/${productModel.id}");
+    String token = await box.read('token');
+    var result = await _dio.delete("$baseUrl/${productModel.id}", options: d.Options(headers: {"Authorization": "Bearer $token"}));
 
     log(result.toString());
   }
 
   Future<void> updateProduct(ProductModel productModel) async {
+    String token = await box.read('token');
     var formData = d.FormData.fromMap({
       'image': await d.MultipartFile.fromFile(_imageController.pickedFile!.path),
       'price': productModel.price,
       'name': productModel.name,
       'description': productModel.description,
     });
-    await _dio.patch('$baseUrl/${productModel.id}', data: formData);
+    await _dio.patch('$baseUrl/${productModel.id}', data: formData, options: d.Options(headers: {"Authorization": "Bearer $token"}));
   }
 }

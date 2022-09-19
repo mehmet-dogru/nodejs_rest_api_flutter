@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../models/auth/user_model.dart';
+import '../../models/auth/login_model.dart';
 
 class RegisterController extends GetxController {
   TextEditingController nameController = TextEditingController();

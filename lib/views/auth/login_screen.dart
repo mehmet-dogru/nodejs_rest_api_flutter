@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../contollers/auth/login_controller.dart';
-import '../../models/auth/user_model.dart';
+import '../../models/auth/login_model.dart';
 import 'register_screen.dart';
 
 class LoginPage extends StatelessWidget {
