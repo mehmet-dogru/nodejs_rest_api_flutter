@@ -1,6 +1,6 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_nodejs_restapi/views/home/home_screen.dart';
 import '../../contollers/product/product_controller.dart';
 import '../../contollers/product/product_image_controller.dart';
 import '../../helpers/textstyle_helper.dart';
@@ -85,7 +85,6 @@ class UpdateProductPage extends StatelessWidget {
                     ),
                     SizedBox(height: Get.width * 0.05),
                     InkWell(
-                      onLongPress: () {},
                       onTap: _controller.isLoading.value
                           ? () {
                               if (_controller.priceController.text.isNotEmpty &&
@@ -97,7 +96,11 @@ class UpdateProductPage extends StatelessWidget {
                                   price: int.parse(_controller.priceController.text),
                                   description: _controller.descriptionController.text,
                                 );
-                                _controller.updateProduct(model);
+                                _controller.updateProduct(model).then(
+                                      (value) => _controller.fetchProduct(),
+                                    );
+                                Navigator.pop(context);
+                                Navigator.pop(context);
                                 _controller.productNameController.clear();
                                 _controller.priceController.clear();
                                 _controller.descriptionController.clear();

@@ -90,9 +90,10 @@ class AddProductPage extends StatelessWidget {
                                   price: int.parse(_controller.priceController.text),
                                   description: _controller.descriptionController.text,
                                 );
-                                _controller.postProduct(model);
+                                _controller.postProduct(model).then(
+                                      (value) => _controller.fetchProduct(),
+                                    );
                                 Navigator.pop(context);
-                                _controller.fetchProduct();
                                 _controller.priceController.clear();
                                 _controller.descriptionController.clear();
                                 _controller.productNameController.clear();

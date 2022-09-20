@@ -1,8 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:dio/dio.dart' as d;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_nodejs_restapi/views/auth/login_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -49,6 +50,9 @@ class ProductController extends GetxController {
         productList.value = _datas.map((e) => ProductModel.fromJson(e)).toList();
       }
     }
+
+    log(response.data.toString());
+
     changeLoading();
   }
 

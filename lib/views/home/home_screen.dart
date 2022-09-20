@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_nodejs_restapi/views/auth/login_screen.dart';
 import 'package:get/get.dart';
@@ -41,6 +39,11 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               });
+              Get.snackbar(
+                'Çıkış Yapıldı',
+                'Yine bekleriz...',
+                icon: const Icon(Icons.logout),
+              );
             },
             icon: Icon(
               Icons.logout_rounded,

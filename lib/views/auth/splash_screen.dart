@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nodejs_restapi/views/auth/login_screen.dart';
 import 'package:flutter_nodejs_restapi/views/home/home_screen.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -39,12 +40,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FittedBox(
-          child: Text(
-            "Hoş Geldiniz...",
-            style: Theme.of(context).textTheme.headline1,
-          ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlutterLogo(
+              size: Get.width * 0.5,
+            ),
+            const SizedBox(height: 20),
+            FittedBox(
+              child: Text(
+                "Hoş Geldiniz...",
+                style: Theme.of(context).textTheme.headline1,
+              ),
+            ),
+          ],
         ),
       ),
     );
